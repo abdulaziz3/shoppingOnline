@@ -36,10 +36,6 @@
     <%= f.text_field :country %>
   </div>
   <div class="field">
-    <%= f.label :credit_id %><br>
-    <%= f.collection_select :credit_id, Credit.all, :id, :Card_holder_name, include_blank: true %>
-  </div>
-  <div class="field">
     <%= f.label :password %><br>
     <%= f.password_field :password %>
   </div>

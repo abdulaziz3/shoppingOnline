@@ -19,23 +19,39 @@
 		<li>
 			<%= link_to "About us", root_path %>
 		</li>
-		<li>
-			<%= link_to "Sign Up", new_customer_path %>
-		</li>
-		<li>
-			<%= mail_to "d13125638@mydit.ie", "contact Us" %>
-		</li>
+		
 		<li>
 			<%= link_to "create product", new_product_path %>
 		</li>
+		
 		<li>
 			<%= link_to "view products", products_path %>
+		</li>
+		
+		<li>
+			<%= link_to "create order", new_order_path %>
+		</li>
+		
+		<li>
+			<%= link_to "view orders", orders_path %>
+		</li>
+		
+		<li>
+			<%= link_to "view customers", customers_path %>
+		</li>
+		
+		<li>
+			<%= link_to "Sign Up", new_customer_path %>
+		</li>
+		
+		<li>
+			<%= mail_to "d13125638@mydit.ie", "contact Us" %>
 		</li>
 		
 		<% if !signed_in? %>
 			<li><%= link_to "Sign In", login_path %></li>
 		<% else %>
-			<li> Signed in as <%= @current_customer.f_name%></li>
+			<li> Signed in as<%= @current_customer.f_name%></li>
 			<li> <%= link_to "Sign Out", logout_path %></li>
 			<% end %>
 	</ul>

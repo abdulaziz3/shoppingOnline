@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 		  redirect_to session[:return_to] || root_path
 	  else
 		  flash.now[:error] = "Invalid email / password "
-		  render'new'
+		  render 'new'
 	  end
   end
 
@@ -19,6 +19,6 @@ class SessionsController < ApplicationController
 	  else
 		  flash[:notice] = "You need to sign in"
 	  end
-	  redirect_to root_path
+	  redirect_to  login_path
   end
 end
