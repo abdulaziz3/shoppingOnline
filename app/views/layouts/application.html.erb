@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Shop</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+	
+<div id="banner">
+	<%= image_tag("image.jpeg", :size => "100x50") %>
+	<%= "FUTURE SHOPPING" %>
+</div>
+
+<div id="nav">
+	<ul>
+		<li>
+			<%= link_to "About us", root_path %>
+		</li>
+		<li>
+			<%= link_to "Sign Up", new_customer_path %>
+		</li>
+		<li>
+			<%= mail_to "d13125638@mydit.ie", "contact Us" %>
+		</li>
+		<li>
+			<%= link_to "create product", new_product_path %>
+		</li>
+		<li>
+			<%= link_to "view products", products_path %>
+		</li>
+		
+		<% if !signed_in? %>
+			<li><%= link_to "Sign In", login_path %></li>
+		<% else %>
+			<li> Signed in as <%= @current_customer.f_name%></li>
+			<li> <%= link_to "Sign Out", logout_path %></li>
+			<% end %>
+	</ul>
+</div>
+
+<%= yield %>
+
+</body>
+</html>
