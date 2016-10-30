@@ -20,7 +20,7 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= product.product_name %></td>
-        <td><%= imagr_tag product.product_pic, :size => '60x60' %></td>
+        <td><%= image_tag product.product_pic, :size => '60x60' %></td>
         <td><%= product.description %></td>
         <td><%= product.colour %></td>
         <td><%= product.size %></td>

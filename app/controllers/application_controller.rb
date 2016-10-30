@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
 		  redirect_to login_path, :notice =>"Please sign in"
 	  end
   end
+  
   private 
 	  def store_location 
-		  session[:return_to] = request.fullpath
-	  
+		  session[:return_to] = request.fullpath	  
 	  end
 end

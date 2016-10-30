@@ -1,6 +1,8 @@
-<h1>Editing Product</h1>
+<h1 align = "center">Editing Product</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+<div class="col-xs-4 col-xs-offset-4">
+              <%= link_to 'Show Product', @product, class: "btn btn-success btn-lg" %> 
+	<%= link_to 'Go Back', products_path, class: "btn btn-success btn-lg"%> 
+</div>

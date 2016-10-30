@@ -1,39 +1,22 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Product name:</strong>
-  <%= @product.product_name %>
-</p>
-
-<p>
-  <strong>Product pic:</strong>
-  <%=image_tag @product.product_pic, size => '100x100' %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-
-<p>
-  <strong>Colour:</strong>
-  <%= @product.colour %>
-</p>
-
-<p>
-  <strong>Size:</strong>
-  <%= @product.size %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-
-<p>
-  <strong>Product number:</strong>
-  <%= @product.product_number %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<div class="row">
+ 	 <div class="well col-xs-12 col-offset-6">
+		  <div class="thumbnail">
+			  <%= image_tag @product.product_pic, :size => '150x150' %>
+		  	<div class="caption">
+				<h3 class = "center"><%= @product.product_name %></h3>
+			  	<p>Description: <%= @product.description %></p>
+			  	<p>Colour: <%= @product.colour %></p>
+			  	<p>Size: <%= @product.size %></p>
+			 	<p>Price: <%= @product.price %></p>
+			  	<p>Code: <%= @product.product_number %></p>
+			  </div>
+			<div class="product-actions">	
+			<%= link_to 'Edit this product', edit_product_path(@product), class: "btn btn-xs btn-primary" %> 
+			<%= link_to 'View all products', products_path, class: "btn btn-xs btn-success" %>
+			<%= link_to 'Delete this product', product_path(@product), method: :delete,
+						data: {confirm: "Are you sure ? "},
+						class: "btn btn-xs btn-danger" %>
+			</div>
+		</div>
+	</div>
+</div>

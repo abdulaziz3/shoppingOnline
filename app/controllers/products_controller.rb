@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authurise, only: [:new, :create, :edit, :update, :destroy]
-
+  #before_action :authorise, only: [:new, :create, :edit, :update, :destroy]
+  
   # GET /products
   # GET /products.json
   def index
@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   def show
   end
 
-  # GET /products/new
+  # GET /products/new 
   def new
     @product = Product.new
   end
@@ -22,45 +22,32 @@ class ProductsController < ApplicationController
   def edit
   end
 
-  # POST /products
-  # POST /products.json
+  
   def create
-    @product = Product.new(product_params)
-
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    @product = Product.new (product_params)
+    if  @product.save
+      flash[:success] = "Product was successfully created"
+      redirect_to  product_path(@product)
+    else
+      render 'new'
     end
-  end
+ end
 
-  # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
-  def update
-    respond_to do |format|
+
+  def update 
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product }
+        flash[:success] = "Product was successfully updated"
+        redirect_to product_path(@product) 
       else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        render 'edit'
       end
     end
-  end
 
-  # DELETE /products/1
-  # DELETE /products/1.json
   def destroy
     @product.destroy
-    respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
-      format.json { head :no_content }
+     flash[:danger] =  "Product was successfully deleted"
+     redirect_to products_path
     end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
