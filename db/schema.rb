@@ -11,16 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161012162055) do
+ActiveRecord::Schema.define(version: 20161102192940) do
 
-  create_table "credits", force: :cascade do |t|
-    t.string   "Card_holder_name"
-    t.integer  "card_number"
-    t.integer  "ccv_number"
-    t.date     "expire_date"
+  create_table "cards", force: :cascade do |t|
+    t.string   "card_holder"
+    t.string   "card_no"
+    t.integer  "ccv_no"
+    t.date     "exp_date"
     t.integer  "customer_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "catigories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "cantent"
+    t.integer  "customer_id"
+    t.integer  "product_id"
+    t.integer  "star"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -30,7 +51,6 @@ ActiveRecord::Schema.define(version: 20161012162055) do
     t.string   "address"
     t.string   "city"
     t.string   "country"
-    t.integer  "credit_id"
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -47,6 +67,20 @@ ActiveRecord::Schema.define(version: 20161012162055) do
   create_table "orders", force: :cascade do |t|
     t.date     "order_date"
     t.integer  "customer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "product_categories", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "catigory_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "product_catigories", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "catigory_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

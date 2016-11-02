@@ -7,7 +7,6 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :address
       t.string :city
       t.string :country
-      t.integer :credit_id
       t.string :password_digest
 
       t.timestamps null: false

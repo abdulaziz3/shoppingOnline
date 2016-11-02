@@ -3,5 +3,7 @@
 	<h1>Email : D13125638@mydit.ie </h1>
 	
 	<a class=" btn btn-primary btn-lg btn-inverse" href="https://github.com/abdulaziz3/films" role="button">Github</a>
-	<%= link_to "Sign up naw",  new_customer_path, class: "btn btn-primary btn-lg btn-inverse"%>
+	<%if !signed_in? %>
+		<%= link_to "Sign up",  new_customer_path, class: "btn btn-primary btn-lg btn-inverse"%>
+	<%end%>
 </div>

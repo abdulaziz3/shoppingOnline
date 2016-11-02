@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
-	has_many :orderproducts
+	
+	has_many :orderProducts
 	
 	belongs_to :customer
 	

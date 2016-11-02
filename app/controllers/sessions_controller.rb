@@ -1,15 +1,18 @@
 class SessionsController < ApplicationController
+
   def new
+
   end
 
   def create
-	  customer = Customer.find_by_email(params[:email])
-	  if customer && customer.authenticate(params[:password])
-		  session[:customer_id]=customer.id
+	  customer = Customer.find_by(email: params[:session][:email].downcase)
+	  if customer && customer.authenticate(params[:session][:password])
+		  session[:customer_id] = customer.id
+		  flash[:success] = "You have successfully logged in"
 		  redirect_to session[:return_to] || root_path
 	  else
-		  flash.now[:error] = "Invalid email / password "
-		  render 'new'
+		  flash[:danger] = "Invalid email / password "
+		  render'new'
 	  end
   end
 
@@ -19,6 +22,6 @@ class SessionsController < ApplicationController
 	  else
 		  flash[:notice] = "You need to sign in"
 	  end
-	  redirect_to  login_path
+	  redirect_to root_path
   end
 end
