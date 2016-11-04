@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102192940) do
+ActiveRecord::Schema.define(version: 20161103041905) do
 
   create_table "cards", force: :cascade do |t|
     t.string   "card_holder"
@@ -21,18 +21,6 @@ ActiveRecord::Schema.define(version: 20161102192940) do
     t.integer  "customer_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "catigories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -54,6 +42,7 @@ ActiveRecord::Schema.define(version: 20161102192940) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.boolean  "admin"
   end
 
   create_table "order_products", force: :cascade do |t|
@@ -67,20 +56,6 @@ ActiveRecord::Schema.define(version: 20161102192940) do
   create_table "orders", force: :cascade do |t|
     t.date     "order_date"
     t.integer  "customer_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "product_categories", force: :cascade do |t|
-    t.integer  "product_id"
-    t.integer  "catigory_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "product_catigories", force: :cascade do |t|
-    t.integer  "product_id"
-    t.integer  "catigory_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

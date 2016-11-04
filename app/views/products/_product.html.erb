@@ -10,7 +10,6 @@
 						<p> size: <%= product.size %></p>
 						<p> price: <%= euro product.price %></p>
 						<p> code: # <%= product.product_number %></p>
-						
 						<div class=" well product-action">
 							<%= link_to 'Edit', edit_product_path(product), class: "btn btn-xs btn-primary" %> 
 							<%= link_to 'Delete ', product, method: :delete, data: {confirm: "Are you sure ? "},class: "btn btn-xs btn-danger" %>

@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
 
+  
 	resources :products do 
 		resources :comments
   	end
 	
   resources :cards
   
-resources :categories, except: [:destroy]
-
+  resources :categories, except: [:destroy]
+  
 resources :customers  
   	controller :sessions do
 		get 'login' => :new

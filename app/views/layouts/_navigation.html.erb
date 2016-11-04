@@ -16,13 +16,17 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 colore">
       <ul class="nav navbar-nav">
         <li> <%= link_to "Products", products_path, id: "logo"%><li>
-        <li><%= link_to "Customers", customers_path, id: "logo"%></li>
+        <% if signed_in? and @current_customer.admin? %>
+            <li><%= link_to "Customers", customers_path, id: "logo"%></li>
+        <% end %>
         <% if signed_in? %>
          	<li class="dropdown" , id= "logo">
-        	  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false", id= "logo">Action<span class="caret"></span></a>
+        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false", id= "logo">Actions<span class="caret"></span></a>
           	  <ul class="dropdown-menu">
+	 <% if signed_in? and @current_customer.admin? %>
           	  <li><%= link_to "New Product", new_product_path%></li>
-          	  <li><a href="#">Another action</a></li>
+	 <% end %>
+          	  <li><%= link_to "View Products", products_path%></li>
           	  <li><a href="#">Something else here</a></li>
           	  <li role="separator" class="divider"></li>
           	  <li><a href="#">Separated link</a></li>
@@ -31,6 +35,8 @@
           	</ul>
         </li>
 	<%end%>
+ </ul>
+</li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
