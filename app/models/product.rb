@@ -18,6 +18,10 @@ class Product < ActiveRecord::Base
 		comments.average(:star)
 	end
 
+	def self.search(query)
+		where("product_name LIKE ?", "%#{query}%")
+	end
+
 	SIZES = ["None", "Small", "Medium", "Large", "X-Large"]
 
 end

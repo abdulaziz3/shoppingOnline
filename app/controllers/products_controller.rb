@@ -6,6 +6,17 @@ class ProductsController < ApplicationController
   def index
     @products = Product.paginate(page: params[:page], per_page: 12)
   end
+
+  def search
+      @product = Product.search params[:query]
+      unless @product.empty?
+        render 'index'
+      else
+        flash[:notice] = "NO product Were FOUND !"
+        @product = Product.all
+        render 'index'
+      end
+  end 
   
   def show
   end

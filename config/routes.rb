@@ -18,6 +18,8 @@ resources :customers
 		delete 'logout' => :destroy
 	end
 
+  get 'search' => 'products#search'
+
   get 'pages/home'
   resources :categories, except: [:destroy]
   resources :products
