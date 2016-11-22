@@ -11,16 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103041905) do
+ActiveRecord::Schema.define(version: 20161120225953) do
 
   create_table "cards", force: :cascade do |t|
-    t.string   "card_holder"
     t.string   "card_no"
     t.integer  "ccv_no"
-    t.date     "exp_date"
+    t.date     "exp_year"
+    t.date     "exp_month"
     t.integer  "customer_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -45,19 +51,9 @@ ActiveRecord::Schema.define(version: 20161103041905) do
     t.boolean  "admin"
   end
 
-  create_table "order_products", force: :cascade do |t|
-    t.integer  "order_id"
-    t.integer  "product_id"
-    t.integer  "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.date     "order_date"
-    t.integer  "customer_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "product_categories", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "category_id"
   end
 
   create_table "products", force: :cascade do |t|

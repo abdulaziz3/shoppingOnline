@@ -1,10 +1,10 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :destroy, :update, :destroy]
+  before_action :set_product, only: [:show, :destroy, :update, :edit]
   before_action :authorise, except: [:show, :index]
   before_action :require_admin, only: [:new, :edit, :update, :destroy]
   
   def index
-    @products = Product.paginate(page: params[:page], per_page: 10)
+    @products = Product.paginate(page: params[:page], per_page: 12)
   end
   
   def show
@@ -54,8 +54,9 @@ class ProductsController < ApplicationController
     end
 
  def product_params
-	 params.require(:product).permit(:product_name, :product_pic, :description, :colour, :size, :price, :product_number)
-	 end
+	 params.require(:product).permit(:product_name, :product_pic, :description, :colour, :size, :price, :product_number, category_ids: [])
+ end
+	 
   def require_admin
     	if !signed_in? || (signed_in? and !@current_customer.admin?)
       	flash[:danger] = "Only admins can perform that action"

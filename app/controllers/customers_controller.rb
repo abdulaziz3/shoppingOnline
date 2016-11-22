@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: [:show, :edit, :update]
-  #before_action :require_same_customer, only: [:edit, :update, :destroy]
+  before_action :set_customer, only: [:update, :edit, :show, :destroy]
+  before_action :authorise, only: [:update, :edit, :show]
   before_action :require_admin, only: [:destroy, :index]
   
   def index
@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
 
  
   def show
-	  #@customer = Customer.find(params[:id])
+	  @customer = Customer.find(params[:id])
   end
 
   def new
@@ -22,6 +22,7 @@ class CustomersController < ApplicationController
   def create
 	@customer = Customer.new(customer_params)
 	if @customer.save
+		CustomerMailer.welcome(@customer).deliver_now
 		session[:customer_id] = @customer.id
 		flash[:success] = "Welcom to the future shopping #{@customer.f_name}"
 		redirect_to customer_path(@customer)
@@ -62,7 +63,7 @@ end
 #	  end 
 #  end
   def require_admin
-	  if !signed_in? || (!signed_in? and !current_customer.admin?)
+	  if !signed_in? || (signed_in? and !@current_customer.admin?)
 		  flash[:danger] = "Only admins can perform that action"
 		  redirect_to products_path
 	  end

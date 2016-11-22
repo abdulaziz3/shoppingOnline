@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
 
+resources :cards
   
 	resources :products do 
 		resources :comments
   	end
 	
-  resources :cards
   
   resources :categories, except: [:destroy]
   
 resources :customers  
+
   	controller :sessions do
 		get 'login' => :new
 		post 'login' => :create
@@ -18,9 +19,8 @@ resources :customers
 	end
 
   get 'pages/home'
-  
+  resources :categories, except: [:destroy]
   resources :products
-  resources :orders
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

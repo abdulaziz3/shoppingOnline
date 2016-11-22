@@ -1,7 +1,7 @@
 <div class="row">
  	 <div class="well col-xs-10 col-xs-offset-1">
 		  <div class="thumbnail">
-			  <%= image_tag @product.product_pic, :size => '150x150' %>
+			  <%= image_tag @product.product_pic, :size => '200x200'%>
 		  	<div class="caption">
 				<h3 class = "center"><%= @product.product_name %></h3>
 			  	<p>Description: <%= @product.description %></p>
@@ -9,59 +9,53 @@
 			  	<p>Size: <%= @product.size %></p>
 			 	<p>Price: <%= euro @product.price %></p>
 			  	<p>Code: # <%= @product.product_number %></p>
+				 <% if @product.categories.any? %>
+				<p>Categories: <%= render @product.categories %></p>
+				<%end%>
 			  </div>
 			  
-			<div class="product-actions">	
+			<div class="product-actions">
+		<%= link_to 'View all products', products_path, class: "btn btn-xs btn-success" %>
+			<% if signed_in? and @current_customer.admin? %>	
 			<%= link_to 'Edit this product', edit_product_path(@product), class: "btn btn-xs btn-primary" %> 
-			<%= link_to 'View all products', products_path, class: "btn btn-xs btn-success" %>
 			<%= link_to 'Delete this product', product_path(@product), method: :delete,
 						data: {confirm: "Are you sure ? "},
 						class: "btn btn-xs btn-danger" %>
+						<%end%>
 			</div>
 		</div>
 	</div>
 </div>
-<h2 align="center">Product Review & Rating </h2>
+<h2 align="center">Reviews</h2>
 <div class="row">
- 	 <div class="well col-xs-10 col-xs-offset-1">
+ 	 <div class="col-xs-10 col-xs-offset-1">
 		 <div class="well thumbnail">
 			<%= form_for([@product, Comment.new]) do |f| %>
-					<h3><%= f.label :stars %>
-					<% stars = [1, 2, 3, 4, 5] %>
-					<% stars.each do |star| %>
-						<%= f.radio_button :star, star %><%= star%>
-					<%end%>
-					</h3>
-					</br>
-					 <%= f.text_area :cantent, :rows => 4, :cols => 60 %>
-						<div class="form-group">
-               				 		 
-             					   		    	 <%= f.submit class: 'btn btn-primary btn-lg'%>
+				</br>
+				<%= f.text_area :cantent, :rows => 8, :cols => 127 %>
+					<div class="form-group"> 
+						<%= f.submit class: 'btn btn-primary btn-lg'%>
   	  					 
-  				 		</div>
-					</div>
+  				 	</div>
 			<%end%>
-			</br></br>
-				<div class="caption ">
-					<% if @product.comments.empty? %>
-						<h3>You are the first Comment </h3>
-					<%else%>
-						<h2>What other felt about this </h2>
+		</div>
+		</br></br>
+		<div class="caption ">
+			<% if @product.comments.empty? %>
+				<h3># You are the first Comment # </h3>
+			<%else%>
+					<h2 class="center">What other felt about this </h2>
+		</div>
+		<div  class = "cont">
+			<h2><% @product.comments.reverse.each do |comment| %></h2>
+			<div class="panel-body well"></br>
+			<p><h3>- <%= comment.cantent%></h3>
+				<h5 align="right">Posted <%= time_ago_in_words (comment.created_at)%> ago by : ' 
+					<%= comment.customer.f_name %> '</p></h5>
 				</div>
-					<div class=" well ">
-					<h2><% @product.comments.reverse.each do |comment| %></h2>
-						<p><h3><%= comment.cantent%></h3>
-						<h4>Posted <%= time_ago_in_words(comment.created_at)%> ago by : 
-						<%= comment.customer.f_name %></p></h4>
-					<%end%>
-				</div>
-					<h3>Star Rating</h3>
-					<p>
-						<%= number_with_precision(@product.average_stars, precision: 0) %>
-					</p>
-					<%end%>
-				
-			</div>
+			<%end%>
+		</div>
+		<%end%>
 		</div>
 	</div>
 </div>

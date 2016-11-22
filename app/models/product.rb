@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
-	has_many :orders
 	
+	has_many :orders
 	has_many :product_categories
 	has_many :categories, through: :product_categories
 	has_many :comments
@@ -17,4 +17,7 @@ class Product < ActiveRecord::Base
 	def average_stars
 		comments.average(:star)
 	end
+
+	SIZES = ["None", "Small", "Medium", "Large", "X-Large"]
+
 end

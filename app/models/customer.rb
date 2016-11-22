@@ -1,7 +1,6 @@
 class Customer < ActiveRecord::Base
 	has_secure_password
 	
-	has_one :card
 	has_many :comments
 	
 	before_save {self.email = email.downcase}
