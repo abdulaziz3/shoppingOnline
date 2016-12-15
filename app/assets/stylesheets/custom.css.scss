@@ -3,6 +3,10 @@ $navbar-default-bg: #e8e2ce;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+html, body {
+	max-width: 100%;
+	overflow-x: hidden;
+}
 #logo {
 	float: left;
 	font-size: 1,7em;
@@ -23,11 +27,19 @@ $navbar-default-bg: #e8e2ce;
 }
 .jumbotron {
 	background-image: asset-url('homepic.jpeg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	height:  550px;
+}
+.jumbotron1 {
+	background-color: #FBF6D9;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
-	height:  530px;
+	height: 490px;
+	border-radius: 20px;
 }
 .jumbotron h1 {
 	color: white;
@@ -45,17 +57,26 @@ $navbar-default-bg: #e8e2ce;
 	display:inline-block;
 	border: none;
 }
-.btn:hover{
-  	background-color: #e8e2ce;
-}
 .product-actions {
 	border-top: 1px solid #eaeaea;
 	padding-top: 5px; 
 	text-align: center;
 }
 .product-title {
+	border: none;
 	font-weight: bold;
 	font-size: 1.5em;
+
+}
+.product-title :hover {
+	 text-decoration:none;
+	 background-color: inherit;
+	 color: black;
+	}
+.product-title :visited {
+    text-decoration: none; 
+    decoration: none; 
+    color: inherit;
 }
 .product-body {
 	border-top: 1px solid #eaeaea;
@@ -69,14 +90,35 @@ $navbar-default-bg: #e8e2ce;
  .well {
 	 background-color: #e8e2ce;
  }
+ .well_categories {
+ 	 background-color: #b7b187;
+ }
+ .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    	color: white;
+    	background-color: #b7b187 ;
+    	border: none;
+}
+.btn-danger, .btn-danger:hover, .btn-danger-:active, .btn-danger:visited {
+	color: white;
+	background-color: #777149;
+	border: none;
+}
+.btn-success, .btn-success:hover, .btn-success:active, .btn-success:visited {
+	color: white;
+	background-color: #777149;
+	border: none;
+	
+}
  .badge {
 	  background-color: #e8e2ce;
-	  text-transform: uppercase;
+	  text-transform: uppercas;
 	  letter-spacing: -1px;
 	  font-weight: bold;
+	  color: black;
  }
  .badge :hover {
-	 background-color: #e8e2ce;
+	  background-color: #e8e2ce;
+	 color: black;
  }
  .input_checkbox input {
 	 width: auto !important;
@@ -96,8 +138,6 @@ $navbar-default-bg: #e8e2ce;
 	border: none;
 }
 .img-thumbnail {
-	/*height: 300px;*/
-	/*align: none;*/
 	border: none;
 	margin-left: 50px;
 }
@@ -106,6 +146,8 @@ footer {
 	padding-top: 5px;
 	border-top: 1px solid #eaeaea;
 	color: #777;
+	overflow-y: hidden;
+	position: relative;
 }
 footer a:hover {
 	color: gray; 
@@ -120,4 +162,12 @@ footer ul {
 footer ul li {
 	float: left;
 	margin-left: 15px;
+}
+.beta{
+  background:#663300;
+  padding: 2px 5px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 11px;
+  text-transform: uppercase;
 }

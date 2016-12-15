@@ -1,6 +1,6 @@
 class Customer < ActiveRecord::Base
 	has_secure_password
-	
+	has_many :orders
 	has_many :comments
 	
 	before_save {self.email = email.downcase}
@@ -13,4 +13,5 @@ class Customer < ActiveRecord::Base
 	validates :f_name, presence: true, length: {minimum: 3, maximum: 20}
 	
 	validates :l_name, presence: true, length: {minimum: 3, maximum: 20}
+
 end

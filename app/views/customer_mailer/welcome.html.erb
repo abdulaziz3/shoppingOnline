@@ -2,10 +2,30 @@
 <html>
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<style type="text/css" media="screen">
+      h2 { color: #bf0909; }
+      	.jumbotron {
+      		background-color: #ddc9af;
+      		
+      		border-radius: 25px;
+      	}
+     	.jumbotron h3 {
+			color: black;
+			font-size: 25px;
+			font-family: times;
+			margin-bottom: 30px;
+			letter-spacing: 0px;
+		}
+      	ul { list-style: none; }
+    </style>
 </head>
 <body>
-<h1>Welcom to our shopping store <%= @customer.f_name %></h1>
-<p> you have successfully sign  up </p>
-<p>Thank you for joining</p>
+<div class="jumbotron">
+	<h3 align="center">You Have Successfully signed in </h2>
+  	<h4>Welcome to online shopping <%= @customer.f_name %></h3>
+  	<h4>You Have Successfully signed in </h3>
+  	<h4> You can visit us online we have a great selection </h3></br>
+  	<h3 align="center"> ENJOY SHOPPING ! </h2>
+</div>
 </body>
 </html>

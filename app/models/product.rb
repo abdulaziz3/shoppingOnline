@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
 	
-	has_many :orders
+	has_many :lineitems
+	
 	has_many :product_categories
 	has_many :categories, through: :product_categories
 	has_many :comments
@@ -13,15 +14,16 @@ class Product < ActiveRecord::Base
 	validates :product_number, uniqueness: { case_sensitive: false }
 	
 	validates :price, presence: true
-	
-	def average_stars
-		comments.average(:star)
-	end
 
 	def self.search(query)
-		where("product_name LIKE ?", "%#{query}%")
+		where("product_name LIKE ? OR description LIKE ? OR product_number LIKE ?", "%#{query}%", "%#{query}%", "%#{query}%")
+
 	end
 
 	SIZES = ["None", "Small", "Medium", "Large", "X-Large"]
+	#<%= f.select :size,[['none', 'none'],['small', 'small'],['medium', 'medium'],['large', 'large'],['x-large', 'x-large']] %>
 
+	def average_stars
+		comments.average(:stars)
+	end
 end

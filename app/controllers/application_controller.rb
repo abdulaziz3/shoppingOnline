@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def authorise
 	  unless signed_in?
 		  store_location 
-		  redirect_to login_path, :notice => "Please sign in"
+		  redirect_to login_path, :notice => "Please Sign in to get access"
 	  end
   end
   
@@ -17,4 +17,12 @@ class ApplicationController < ActionController::Base
 	def store_location
 		session[:return_to] = request.fullpath
 	  end
+
+	def current_cart
+		@cart = Cart.find(session[:cart_id])
+	rescue ActiveRecord::RecordNotFound
+		@cart = Cart.create
+		session[:cart_id] = @cart.id
+	end
+
 end

@@ -1,33 +1,38 @@
 Rails.application.routes.draw do
-
-resources :cards
   
+  resources :orders
+  resources :lineitems
+  resources :products
+  resources :customers 
+
 	resources :products do 
 		resources :comments
-  	end
-	
-  
-  resources :categories, except: [:destroy]
-  
-resources :customers  
+  end 
 
-  	controller :sessions do
+  controller :sessions do
 		get 'login' => :new
 		post 'login' => :create
 		get 'logout' => :destroy
 		delete 'logout' => :destroy
 	end
 
-  get 'search' => 'products#search'
+  
+  resources :carts do
+    resources :lineitems
+  end
 
   get 'pages/home'
+  get 'pages/about'
+  
+  get 'search' => 'products#search'
+
   resources :categories, except: [:destroy]
-  resources :products
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root :to => "pages#home"
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

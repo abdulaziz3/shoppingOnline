@@ -8,11 +8,11 @@ class ProductsController < ApplicationController
   end
 
   def search
-      @product = Product.search params[:query]
-      unless @product.empty?
+      @products = Product.paginate(page: params[:page], per_page: 12).search params[:query]
+      unless @products.empty?
         render 'index'
       else
-        flash[:notice] = "NO product Were FOUND !"
+        flash[:notice] = "NO Products Were Found !"
         @product = Product.all
         render 'index'
       end
@@ -65,7 +65,7 @@ class ProductsController < ApplicationController
     end
 
  def product_params
-	 params.require(:product).permit(:product_name, :product_pic, :description, :colour, :size, :price, :product_number, category_ids: [])
+	 params.require(:product).permit(:product_name, :product_pic, :description, :colour, :size, :price, :product_number, :quantity, category_ids: [])
  end
 	 
   def require_admin

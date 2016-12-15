@@ -54,7 +54,7 @@ end
     end
     # Never trust parameters from the scary internet, only allow the white lis
   def customer_params
-	params.require(:customer).permit(:l_name, :f_name, :email, :address, :city, :country, :password, :password_confirmation)
+	params.require(:customer).permit(:l_name, :f_name, :email, :address, :city, :country, :password, :password_confirmation, :latitude, :longitude)
     end
   #def require_same_customer
 #	  if current_customer != @customer and !@current_customer.admin?

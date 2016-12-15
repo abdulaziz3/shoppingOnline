@@ -12,9 +12,9 @@
 
  	 	<tbody>
    			 <% @customers.each do |customer| %>
-     	 		<tr>
-					<td><%= link_to  customer.id, customer_path(customer)%></td>
-      			 		<td><%= link_to customer.l_name, customer_path(customer) %></td>
+     	 		<tr data-link="<%= customer_path(customer) %>">
+					<td><%= customer.id %></td>
+      			 		<td><%= customer.l_name %></td>
       			 		<td><%= customer.f_name %></td>
 					<td><%= customer.email %></td>
 					<td><%= customer.country %></td>
@@ -22,5 +22,6 @@
    	 		<% end %>
 		</tbody> 
 	</table>
-<%= link_to 'Home Page', root_path, clas: "btn btn-xs btn-primary" %>
+<%= link_to 'Home Page', root_path, class: "btn btn-md btn-success pull-right" %>
+
 <%end%>

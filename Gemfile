@@ -7,6 +7,7 @@ gem 'rails', '4.2.6'
 gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'autoprefixer-rails'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -31,6 +32,7 @@ gem 'will_paginate', '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 
 gem 'carrierwave'
+gem 'geocoder'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

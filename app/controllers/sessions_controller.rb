@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
 	  customer = Customer.find_by(email: params[:session][:email].downcase)
 	  if customer && customer.authenticate(params[:session][:password])
 		  session[:customer_id] = customer.id
-		  flash[:success] = "You have successfully logged in"
+		  current_cart.save
+		  flash[:success] = "Welcome back"
 		  redirect_to session[:return_to] || root_path
 	  else
 		  flash[:danger] = "Invalid email / password "

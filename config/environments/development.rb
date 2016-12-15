@@ -22,8 +22,8 @@ Rails.application.configure do
 	  :port => 587,
 	  :domain =>'smtp.gmail.com',
 	  :authentication => :plain,
-	  :user_name => '',
-	  :password => ''
+	  :user_name => 'Add your email in here',
+	  :password => 'Add Your Password Here'
   }
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
